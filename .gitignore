@@ -1,0 +1,32 @@
+# Binary files
+*.exe
+*.out
+*.app
+*.bin
+*.dll
+*.dmg
+
+# Build artifacts
+/dist/
+/build/
+/bin/
+
+# Go module files (generated)
+go.sum
+
+# IDE/editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# SQLite database and migrations (if applicable)
+*.db
+*.db-shm
+*.db-wal
+/migrations/*.log
+
