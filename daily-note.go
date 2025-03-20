@@ -3,7 +3,6 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"regexp"
 	"strings"
@@ -53,7 +52,7 @@ func extractIncompleteTasks(noteFile string) []string {
 	return strings.Split(result.String(), "\n")
 }
 
-func main() {
+func dailynote() {
 	// Define directories and filenames
 	notesDir := os.Getenv("HOME") + "/astrolog/daily"
 	templateFile := os.Getenv("HOME") + "/astrolog/templates/daily-note.md"
@@ -89,7 +88,7 @@ func main() {
 
 	// If template exists, copy it and modify it
 	if _, err := os.Stat(templateFile); err == nil {
-		templateContent, err := ioutil.ReadFile(templateFile)
+		templateContent, err := os.ReadFile(templateFile)
 		if err != nil {
 			fmt.Println("Error reading template file:", err)
 			return
@@ -110,7 +109,7 @@ func main() {
 		}
 
 		// Write back to the note file
-		err = ioutil.WriteFile(noteFile, []byte(content), 0644)
+		err = os.WriteFile(noteFile, []byte(content), 0644)
 		if err != nil {
 			fmt.Println("Error writing note:", err)
 			return

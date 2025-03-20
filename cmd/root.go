@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/JonathanGeorgiou/astrolog/internal/database"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -15,8 +16,9 @@ var cfgFile string
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "astrolog",
-	Short: "A brief description of your application",
+	Use: "astrolog",
+	// a witty short description of a note taking app for astronauts
+	Short: "A note taking app to log your journey through space",
 	Long: `A longer description that spans multiple lines and likely contains
 examples and usage of using your application. For example:
 
@@ -38,17 +40,10 @@ func Execute() {
 }
 
 func init() {
+	database.InitDB()
 	cobra.OnInitialize(initConfig)
 
-	// Here you will define your flags and configuration settings.
-	// Cobra supports persistent flags, which, if defined here,
-	// will be global for your application.
-
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.astrolog.yaml)")
-
-	// Cobra also supports local flags, which will only run
-	// when this action is called directly.
-	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is VILES $HOME/.astrolog.yaml)")
 }
 
 // initConfig reads in config file and ENV variables if set.
